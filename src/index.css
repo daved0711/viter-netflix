@@ -49,6 +49,38 @@
 .custom-scroll::-webkit-scrollbar-thumb:hover {
   background: #715b5b;
 }
+.spinner circle {
+  fill: none;
+  stroke-width: 6;
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  animation: dash 1s ease-in-out infinite;
+}
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 90, 200;
+    stroke-dashoffset: -35px;
+  }
+
+  100% {
+    stroke-dashoffset: -110px;
+  }
+  
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
 
 @layer base {
   
@@ -109,21 +141,9 @@
   }
   }
 @layer utilities{
-  
-.layout-main {
-  @apply h-screen bg-primary;
-}
-.layout-division{
-  @apply flex  h-full;
-}
-
-
-.layout-division aside {
-  @apply bg-secondary max-w-[200px] w-full;
-}
-.layout-division main {
-  @apply w-full h-full grid grid-rows-[auto,_1fr];
-}
+  .center-all {
+    @apply flex justify-center items-center;
+  }
 
 
 
@@ -131,15 +151,23 @@
 }
 
 @layer components{
+
+
   .container{
     @apply max-w-[1800px] mx-auto px-4;
+}
+
+
+.btn:disabled{
+  @apply pointer-events-none opacity-50;
 }
 
 .btn{
   @apply p-1.5 border py-2 border-transparent flex gap-2 
   rounded-md transition-all items-center bg-primary text-sm;
 }
-.btn-add{
+.btn-add,
+.btn-accent{
 @apply bg-accent text-white hover:bg-opacity-80 ;
 }
 .btn-alert{
@@ -172,7 +200,7 @@
 }
 
 .table-wrapper table tbody tr:nth-child(odd){
-  @apply bg-[#151b25]; 
+  @apply bg-primary; 
 }
 
 .table-wrapper table tbody tr:hover{
@@ -205,5 +233,65 @@ transition-all z-30;
 
 .tooltip:hover::before{
   @apply opacity-100;
+}
+
+.loading-bar {
+  @apply overflow-hidden relative;
+}
+.loading-bar::after {
+  @apply content-[''] absolute top-0 left-0 w-full h-full  bg-skeleton animate-loading;
+}
+
+.layout-main {
+  @apply h-screen bg-primary;
+}
+.layout-division{
+  @apply flex  h-full;
+}
+
+
+.layout-division aside {
+  @apply bg-secondary max-w-[200px] w-full;
+}
+.layout-division main {
+  @apply w-full h-full grid grid-rows-[auto,_1fr];
+}
+
+.input-wrap{
+  @apply mb-2 relative ;
+}
+.input-wrap input, 
+.input-wrap textarea, 
+.input-wrap select {
+  @apply px-2 py-1 w-full outline-none border border-line bg-primary text-body rounded-md focus:border-info;
+}
+.input-wrap:has(.show-error) input, 
+.input-wrap:has(.show-error) textarea,
+.input-wrap:has(.show-error) select{
+  @apply border-alert animate-shake;
+}
+
+.input-wrap input:disabled, 
+.input-wrap textarea:disabled, 
+.input-wrap select:disabled {
+@apply pointer-events-none opacity-60;
+}
+
+.input-wrap textarea {
+  @apply resize-none h-[100px];
+}
+
+
+.input-wrap label {
+  @apply text-xs;
+}
+.input-wrap .show-error{
+  @apply absolute top-1 right-0 text-alert text-xs italic ;
+}
+.input-wrap:has(.show-error) label{
+  @apply text-alert;
+}
+.input-wrap:has(.show-error) input{
+  @apply text-alert animate-shake;
 }
 }
