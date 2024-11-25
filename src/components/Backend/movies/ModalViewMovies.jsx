@@ -2,8 +2,13 @@ import React from 'react'
 import ModalWrapper from '../partials/modals/ModalWrapper'
 import { imgPath } from '@/components/Frontend/helpers/functions-general'
 import { Play, PlayIcon, Plus, ThumbsUp, X } from 'lucide-react'
+import { setIsView } from '@/components/Store/storeAction'
+import { StoreContext } from '@/components/Store/storeContext'
 
 const ModalViewMovies = () => {
+  const { dispatch, store} = React.useContext(StoreContext);
+  const handleClose = () => {dispatch(setIsView(false));
+  }
   return (
     <ModalWrapper>
     <div className="modal-main bg-primary absolute top-1/2 left-1/2 -translate-x-1/2
@@ -20,7 +25,8 @@ const ModalViewMovies = () => {
         </div>  
         <div className="tint absolute bottom-0 left-0 w-full h-[70%] bg-gradient-to-t from-black to bg-transparent">       
             </div>     
-            <button className='absolute top-3 right-3 size-[35px] center-all text-dark bg-light rounded-full'><X/></button>
+            <button className='absolute top-3 right-3 size-[35px] center-all
+             text-dark bg-light rounded-full' onClick={handleClose}><X/></button>
        </div>
     
 
@@ -28,6 +34,8 @@ const ModalViewMovies = () => {
         <div className='grid grid-cols-[1fr,_250px] gap-5'>
             <div>
                 <ul className='flex gap-3 items-center mb-3'>
+                  <li className='border-[1px] border-dark p-[0.5px] px-2.5 text-[12px] leading-none'>
+                    <span className='translate-y-[1px] block'>16+</span></li>
                     <li>2022  </li>
                     <li>1hr 20mins  </li>
                     <li className='border-[1px] border-dark p-[0.5px] px-1.5 text-[9px] '>HD  </li>
@@ -50,7 +58,8 @@ const ModalViewMovies = () => {
                   className="w-full object-cover h-[120px]"
                 />
                 <p className="absolute top-3 right-3 z-40">1h 5mins</p>
-                <div className="tint bg-gradient-to-b from-[rgba(0,0,0,0.8)] to-transparent absolute top-0 left-0 w-full h-full"></div>
+                <div className="tint bg-gradient-to-b from-[rgba(0,0,0,0.8)]
+                 to-transparent absolute top-0 left-0 w-full h-full"></div>
               </div>
               <div className="p-4 bg-secondary">
                 <div className="flex justify-between items-center mb-5">

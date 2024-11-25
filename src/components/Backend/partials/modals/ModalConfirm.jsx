@@ -1,8 +1,14 @@
 import { Archive, Trash2, X } from 'lucide-react'
 import React from 'react'
 import ModalWrapper from './Modalwrapper'
+import { setIsConfirm } from '@/components/Store/storeAction';
+import { StoreContext } from '@/components/Store/storeContext';
 
 const ModalConfirm = () => {
+    const { dispatch} = React.useContext(StoreContext);
+
+    const handleClose = () => {dispatch(setIsConfirm(false));
+    };
 return (
     <>
      <ModalWrapper>
@@ -10,7 +16,7 @@ return (
         -translate-y-1/2 max-w-[400px] w-full rounded-md border border-line">
             <div className="modal-header flex gap-2 p-2  items-center border-b border-line mb-2">
                 <Archive size={16} stroke='yellow' /><span className='text-warning'>Confirm</span>
-                <button className='ml-auto'>
+                <button className='ml-auto' onClick={handleClose}>
                     <X/>
                 </button>
             </div>
@@ -20,7 +26,7 @@ return (
                 </p>
                 <div className=' flex justify-end gap-3 mt-10'>
                   <button className='btn btn-warning'>Archive</button>
-                  <button className='btn btn-cancel'>Cancel</button>
+                  <button className='btn btn-cancel'  onClick={handleClose}>Cancel</button>
                 </div>
             </div>
         </div>

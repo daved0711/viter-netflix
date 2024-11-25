@@ -89,7 +89,7 @@ input::-webkit-inner-spin-button {
   }
   
   body {
-    @apply text-body font-['Poppins']  min-h-screen w-full;
+    @apply !text-body font-['Poppins']  min-h-screen w-full;
   }
   
   a {
@@ -113,7 +113,7 @@ input::-webkit-inner-spin-button {
   h4,
   h5,
   h6 {
-    @apply font-bold  leading-normal font-['Poppins'] text-dark;
+    @apply font-bold  leading-normal !font-['Poppins'] text-dark;
   }
   
   h1 {
@@ -199,6 +199,9 @@ input::-webkit-inner-spin-button {
   @apply p-1.5 text-sm;
 }
 
+.table-wrapper table thead tr{
+  @apply bg-primary; 
+}
 .table-wrapper table tbody tr:nth-child(odd){
   @apply bg-primary; 
 }

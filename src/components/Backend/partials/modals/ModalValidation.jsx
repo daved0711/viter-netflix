@@ -1,8 +1,15 @@
 import { Archive, Info, Trash2, X } from 'lucide-react'
 import React from 'react'
 import ModalWrapper from './Modalwrapper'
+import { setValidate } from '@/components/Store/storeAction';
+import { StoreContext } from '@/components/Store/storeContext';
 
 const ModalValidation = () => {
+    const { dispatch} = React.useContext(StoreContext);
+
+    const handleClose = () => {dispatch(setValidate(false));
+    };
+
 return (
     <>
      <ModalWrapper>
@@ -16,7 +23,7 @@ return (
                 <p className='my-5 text-center'> 
                    The title already exist
                 </p>
-                <button className='btn btn-info w-full flex justify-center'>okay</button>
+                <button className='btn btn-info w-full flex justify-center' onClick={handleClose}>okay</button>
                 
             </div>
         </div>

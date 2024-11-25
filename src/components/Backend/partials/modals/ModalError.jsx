@@ -1,8 +1,15 @@
 import { Archive, Frown, Info, Trash2, X } from 'lucide-react'
 import React from 'react'
 import ModalWrapper from './Modalwrapper'
+import { setError } from '@/components/Store/storeAction';
+import { StoreContext } from '@/components/Store/storeContext';
 
 const ModalError = () => {
+  const { dispatch} = React.useContext(StoreContext);
+
+  const handleClose = () => {dispatch(setError(false));
+  };
+
 return (
     <>
      <ModalWrapper>
@@ -17,7 +24,7 @@ return (
                 <p className='my-5 text-center'> 
                   Something went wrong. Please reload the page
                 </p>
-                <button className='btn btn-alert w-full flex justify-center'>okay</button>
+                <button className='btn btn-alert w-full flex justify-center'onClick={handleClose}>okay</button>
                 
             </div>
         </div>
