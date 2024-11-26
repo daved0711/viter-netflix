@@ -29,7 +29,6 @@ const Movies = () => {
   const handleAdd = () => {dispatch(setIsAdd(true));
   }
 
-  const handleChangeLoadmoreText = () => dispatch(setMessage("Loverboy"));
   return (
     <>
     <section className='layout-main '>
@@ -55,11 +54,9 @@ const Movies = () => {
     {store.validate && <ModalValidation/> }
     {store.error && <ModalError/>}
      {store.success && <ToastSuccess/>}
-
-    
     {/* {store.isView && <SpinnerWindow/>} */}
     {store.isAdd && <ModalAddMovie/>}
-    {store.isView && <ModalViewMovies/>}
+   
     </>
   )
 }

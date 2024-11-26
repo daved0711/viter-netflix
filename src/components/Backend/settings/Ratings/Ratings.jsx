@@ -25,6 +25,7 @@ const Ratings = () => {
     const handleAdd = () => {
       dispatch(setIsAdd(true));
       }
+      
   return (
     <>
       <div className='bg-secondary p-4 mt-5 border-line rounded-md'>

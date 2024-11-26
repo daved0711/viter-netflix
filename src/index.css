@@ -79,8 +79,26 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+.swiper {
+  min-height: 320px;
+}
 
+.swiper-pagination {
+  top: -0.2rem !important;
+  left: 45% !important;
+  height: 20px;
+}
 
+.swiper-pagination-bullet {
+  background-color: white !important;
+border-radius:0 !important;
+width: 12px !important;
+height: 2px !important;
+margin: 0 1.5px !important;
+}
+.slide-parent:has(.group:hover) .slider-nav-btn {
+opacity: 100;
+}
 
 @layer base {
   
@@ -268,11 +286,7 @@ transition-all z-30;
 .input-wrap select {
   @apply px-2 py-1 w-full outline-none border border-line bg-primary text-body rounded-md focus:border-info;
 }
-.input-wrap:has(.show-error) input, 
-.input-wrap:has(.show-error) textarea,
-.input-wrap:has(.show-error) select{
-  @apply border-alert animate-shake;
-}
+
 
 .input-wrap input:disabled, 
 .input-wrap textarea:disabled, 
@@ -288,13 +302,28 @@ transition-all z-30;
 .input-wrap label {
   @apply text-xs;
 }
-.input-wrap .show-error{
+
+.input-wrap:has(.error-show) input, 
+.input-wrap:has(.error-show) textarea,
+.input-wrap:has(.error-show) select{
+  @apply border-alert animate-shake;
+}
+
+.input-photo-wrap:has(.error-show){
+  @apply border border-alert animate-shake rounded-md;
+}
+.input-photo-wrap span.error-show{
+  @apply !-top-4;
+}
+
+
+.input-wrap span.error-show{
   @apply absolute top-1 right-0 text-alert text-xs italic ;
 }
-.input-wrap:has(.show-error) label{
+/* .input-wrap:has(.error-show) label{
   @apply text-alert;
 }
-.input-wrap:has(.show-error) input{
+.input-wrap:has(.error-show) input{
   @apply text-alert animate-shake;
-}
+} */
 }

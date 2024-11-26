@@ -28,7 +28,7 @@ return (
                     Are you sure you want to remove this movies?
                 </p>
                 <div className=' flex justify-end gap-3 mt-10'>
-                  <button className='btn btn-alert'><SpinnerButton/>  Delete</button>
+                  <button className='btn btn-alert' type='reset'><SpinnerButton/>  Delete</button>
                   <button className='btn btn-cancel'onClick={handleClose}>Cancel</button>
                 </div>
             </div>

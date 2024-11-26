@@ -4,11 +4,16 @@ import SliderMovie from './SliderMovie'
 
 const Homepage = () => {
   return (
-    <div>
+ 
+      <div className='pb-24  bg-dark'>
+
 <Banner/>
-<SliderMovie/>
-<div className='h-[50vh]'></div>
-    </div>
+<SliderMovie title="Top Picks"/>
+<SliderMovie title="International" filter="International"/>
+<SliderMovie title="Anime" filter="Anime" />
+<SliderMovie title="Local"/>
+<SliderMovie title="Cartoons"/>
+</div>
   )
 }
 

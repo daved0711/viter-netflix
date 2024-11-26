@@ -7,14 +7,16 @@ import { Archive, ArchiveRestore, FilePenLine, FileVideo, Trash2 } from 'lucide-
 import IconNoData from '../partials/IconNoData'
 import SpinnerTable from '../partials/spinners/SpinnerTable'
 import { StoreContext } from '@/components/Store/storeContext'
-import { setIsConfirm, setIsDelete, setIsView } from '@/components/Store/storeAction'
+import { setIsAdd, setIsConfirm, setIsDelete, setIsView } from '@/components/Store/storeAction'
 import ModalDelete from '../partials/modals/ModalDelete'
 import ModalConfirm from '../partials/modals/ModalConfirm'
 import ModalViewMovies from './ModalViewMovies'
+import { movies } from './datamovies'
 
 const MoviesTable = () => {
      const { dispatch, store} = React.useContext(StoreContext);
-
+     const [movieInfo, setmovieInfo] = React.useState("");
+   let counter = 1;
   const handleDelete = () => {
     dispatch(setIsDelete(true));
     }
@@ -24,8 +26,12 @@ const MoviesTable = () => {
   const handleArchive = () => {
     dispatch(setIsConfirm(true));
     }
-  const handleView = () => {
+  const handleView = (item) => {
     dispatch(setIsView(true));
+    setmovieInfo(item)
+    }
+  const handleEdit = () => {
+    dispatch(setIsAdd(true));
     }
   return (
     <>
@@ -59,19 +65,19 @@ const MoviesTable = () => {
                             </td>
                             
                         </tr> */}
-                        {Array.from(Array(7).keys()).map((i)=>(
-                            <tr key={i}>
-                            <td>{i + 1}.</td>
+                       {movies.map((item, key)=>( 
+                        <tr  key={key}>
+                            <td>{counter++}.</td>
                             <td><Pills/></td>
-                            <td>wedding Singer</td>
-                            <td>1999</td>
-                            <td>1hr 40mins</td>
+                            <td>{item.movie_title}</td>
+                            <td>{item.movie_year}</td>
+                            <td>{item.movie_duration}</td>
                             <td>
                                 <ul className='table-action  '>
-                                    {true ? (
+                                    {item.movie_is_active ? (
                                  <>
-                                    <li><button className='tooltip' data-tooltip="View" onClick={() => handleView()}><FileVideo/></button></li>
-                                    <li><button className='tooltip' data-tooltip="Edit" onClick={() => handleAdd()}><FilePenLine/></button></li>
+                                    <li><button className='tooltip' data-tooltip="View" onClick={() => handleView(item)}><FileVideo/></button></li>
+                                    <li><button className='tooltip' data-tooltip="Edit" onClick={() => handleEdit()}><FilePenLine/></button></li>
                                     <li><button className='tooltip' data-tooltip="Archive" onClick={()=>handleArchive()}><Archive /></button></li>
                                 </>) :(<>
                                     <li><button className='tooltip' data-tooltip="Restore" onClick={()=>handleRestore()}><ArchiveRestore /></button></li>
@@ -82,7 +88,10 @@ const MoviesTable = () => {
                                 </ul>
                             </td>
                         </tr>
-                    ))}
+
+                       ))}
+                           
+                    
                        
                     </tbody>    
                     </table>    
@@ -90,9 +99,10 @@ const MoviesTable = () => {
                     <LoadMore/>
                     </div>
                     </div> 
-                    {store.isAdd && <ModalViewMovies/>} 
-                      { store.isDelete && <ModalDelete/>}
+                  
+                    {store.isDelete && <ModalDelete/>}
                      {store.isConfirm && <ModalConfirm/> }
+                     {store.isView && <ModalViewMovies movieInfo= {movieInfo}/> }
                     
                      </>
   )

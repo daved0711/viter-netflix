@@ -8,7 +8,7 @@ const Searchbar = () => {
                         <input type="text" placeholder=' keyword' 
                         className='p-1.5 bg-secondary border border-line rounded-md outline-none pl-8 
                         placeholder:opacity-30 placeholder:text-sm w-[250px] 
-                         w-full block focus:border-accent' />
+                         block focus:border-accent' />
                         <SearchIcon className='absolute bottom-2.5 left-2 opacity-50' size={18}/>
                         </form> 
     </>
